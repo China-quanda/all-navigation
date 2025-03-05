@@ -2,7 +2,8 @@
 
   <div class="flex gap-x-4 h-full p-4">
     <div>
-      <DefaultSideBar />
+      <DefaultSideBar :sideMenu="sideMenu" class="hidden1" />
+      <DefaultSideBarMenu :sideMenu="sideMenu"  />
     </div>
     <div class="hidden grid gap-5 w-full justify-center dark:bg-[#131313]"
       style="grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));">
@@ -58,6 +59,159 @@
 </template>
 
 <script lang="ts" setup>
+const tabs = ref([
+{
+    id: 1,
+    title: '首页',
+    children: []
+  },
+  {
+    id: 2,
+    title: '关于我们',
+    children: [
+      {
+        id: 3,
+        title: '公司介绍',
+        children: []
+      },
+      {
+        id: 4,
+        title: '联系方式',
+        children: []
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: '产品',
+    children: [
+      {
+        id: 6,
+        title: '产品A',
+        children: []
+      },
+      {
+        id: 7,
+        title: '产品B',
+        children: []
+      }
+    ]
+  }
+])
+const sideMenu = ref([
+  {
+    id: 0,
+    name: 'Features',
+    icon: '',
+    children: []
+  },
+  {
+    id: 0,
+    name: 'Marketplace',
+    icon: '',
+    children: []
+  },
+  {
+    id: 0,
+    name: 'Company',
+    icon: '',
+    children: []
+  },
+  {
+    id: 0,
+    name: 'Product',
+    icon: '',
+    children: [
+      {
+        id: 0,
+        name: 'Analytics',
+        icon: '',
+        children: []
+      },
+      {
+        id: 0,
+        name: 'Engagement',
+        icon: '',
+        children: []
+      },
+      {
+        id: 0,
+        name: 'Security',
+        icon: '',
+        children: []
+      },
+      {
+        id: 0,
+        name: 'Integrations',
+        icon: '',
+        children: []
+      },
+      {
+        id: 0,
+        name: 'Automations',
+        icon: '',
+        children: []
+      },
+      {
+        id: 0,
+        name: 'Watch demo',
+        icon: '',
+        children: []
+      },
+      {
+        id: 0,
+        name: 'Contact sales',
+        icon: '',
+        children: []
+      }
+    ]
+  },
+  {
+    id: 0,
+    name: 'Quanda',
+    icon: '',
+    children: [
+      {
+        id: 0,
+        name: 'Quanda1',
+        icon: '',
+        children: [
+          {
+            id: 0,
+            name: 'Quanda1-1',
+            icon: '',
+            children: []
+          },
+          {
+            id: 0,
+            name: 'Quanda1-2',
+            icon: '',
+            children: []
+          }
+        ]
+      },
+      {
+        id: 0,
+        name: 'Quanda2',
+        icon: '',
+        children: [
+          {
+            id: 0,
+            name: 'Quanda2-2',
+            icon: '',
+            children: []
+          }
+        ]
+      },
+      {
+        id: 0,
+        name: 'Quanda3',
+        icon: '',
+        children: []
+      }
+    ]
+  }
+])
 </script>
 
 <style lang="scss" scoped>
