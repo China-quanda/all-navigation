@@ -1,0 +1,31 @@
+{
+  "name": "all-navigation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.13.1",
+    "@prisma/client": "6.4.1",
+    "bcrypt": "^5.1.1",
+    "ioredis": "^5.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "nuxt": "^3.15.4",
+    "scss": "^0.2.4",
+    "svg-captcha": "^1.4.0",
+    "uuid": "^11.1.0",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.8",
+    "prisma": "^6.4.1",
+    "sass": "^1.77.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}

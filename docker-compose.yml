@@ -1,0 +1,34 @@
+services:
+
+  # Docker connection string: postgres://postgres:postgres@localhost:5432/
+  # docker-compose up redis  # 启动redis docker compose
+  # docker compose up postgres # 启动postgres docker compose
+
+  postgres:
+    image: postgres:13.5
+    container_name: postgres # 设置容器名（可选）
+    # restart: always # 容器随docker启动自启
+    environment: # 环境变量配置
+      TZ: 'Asia/Shanghai'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: navigation # 需要创建的数据库
+    volumes: # 持久化数据（重启服务不丢失数据），‘postgres_admin’自定义名称
+      - ./docker/postgres/data:/var/lib/postgresql/data
+      # - postgres_admin:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis
+    container_name: redis
+    # restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./docker/redis/data:/data
+      - ./docker/redis/conf/redis.conf:/home/redis/redis.conf
+    command: redis-server /home/redis/redis.conf
+
+# volumes:
+#   postgres_admin: # 对应上面的volumes名称
