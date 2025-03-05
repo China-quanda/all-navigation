@@ -1,7 +1,6 @@
 <template>
   <div class="sub-menu" :id="index">
-
-    <button type="button" class="sub-menu-title flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/5 font-semibold text-gray-900 dark:text-blue-50 hover:bg-gray-50 dark:hover:text-gray-900" @click="toggleMenu">
+    <button type="button" class="sub-menu-title flex w-full items-center justify-between rounded-lg py-4 pr-3.5 pl-3 text-base/5 font-semibold text-gray-900 dark:text-blue-50 hover:bg-gray-50  dark:hover:text-[#e5eaf3] hover:dark:bg-[#1d1e1f]" @click="toggleMenu">
       <slot name="title"></slot>
       <!-- Expand/collapse icon, toggle classes based on menu open state.
         Open: "rotate-180", Closed: ""

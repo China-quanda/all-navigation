@@ -166,7 +166,7 @@
       </div>
 
       <div class="hidden lg:flex lg:items-center lg:flex-1 lg:justify-end">
-        <!-- <Theme class="mr-4" /> -->
+        <Theme class="mr-4" />
         <a v-if="isLogin" href="/auth/singIn" class="text-sm/6 font-semibold text-gray-900 dark:text-blue-50 dark:hover:text-blue-200">Log in <span
             aria-hidden="true">&rarr;</span></a>
         <!-- Profile dropdown -->

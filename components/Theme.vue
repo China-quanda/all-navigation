@@ -1,7 +1,7 @@
 <template>
   <!-- From Uiverse.io by Galahhad -->
   <div class="theme-box">
-    <label class="theme-switch" @click="triggerMode">
+    <label class="theme-switch" @click.prevent="triggerMode">
       <input type="checkbox" v-model="isDarkMode" class="theme-switch__checkbox">
       <div class="theme-switch__container">
         <div class="theme-switch__clouds"></div>
@@ -31,7 +31,6 @@ import { useMyStorage } from '~/composables/useMyStorage'
 const { getStorage, setStorage } = useMyStorage()
 const isDarkMode = ref(false)
 function triggerMode() {
-  console.log('trigger mode')
   isDarkMode.value = !isDarkMode.value
   if (isDarkMode.value) {
     setStorage('theme', 'dark')
