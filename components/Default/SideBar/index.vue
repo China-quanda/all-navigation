@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 const { title } = useAppConfig()
+const isCollapse = ref(false)
 const isShowLogo = ref(true)
 const sideMenu = ref([
   {

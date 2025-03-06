@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 const { security:securityConfig } = useAppConfig()
-console.log('securityConfig',securityConfig)
 
 export const verifyAccessToken = async (token: string) => {
   return jwt.verify(token, {

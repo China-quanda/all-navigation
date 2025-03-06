@@ -22,10 +22,6 @@ defineProps({
   sideMenu: {
     type: Array,
     default: () => []
-  },
-  isCollapse: {
-    type: Boolean,
-    default: false
   }
 })
 </script>
