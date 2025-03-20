@@ -1,5 +1,4 @@
 import { defineNuxtConfig } from "nuxt/config";
-
 export default defineNuxtConfig({
   // app:{
   //   baseURL: '/it-navigation/',
@@ -13,6 +12,12 @@ export default defineNuxtConfig({
     // public中的键也可以在客户端使用
     public: {
       apiBase: '/api'
+    },
+    mode:process.env.NODE_ENV,
+    redisConfig:{
+      host: process.env.REDIS_HOST || 'localhost',
+      port: process.env.REDIS_PORT ? Number(process.env.REDIS_PORT) : 6379,
+      password: process.env.REDIS_PASSWORD,
     }
   },
 

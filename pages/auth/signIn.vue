@@ -34,7 +34,7 @@
           </div>
           <div class="login-item">
             <div class="login-field">
-              <div v-if="codeImg" v-html="codeImg" id="codeImg"  @click="loadCodeImg" ></div>
+              <div v-if="codeImg" v-html="codeImg" id="codeImg" @click="loadCodeImg"></div>
               <img v-else id="codeImg" src="@/assets/images/login/default_code.png" />
               <img class="fl" src="@/assets/images/login/code_img.png" />
               <input v-model="form.code" class="login-input w-90" type="text" placeholder="请输入右图计算结果" />
@@ -61,16 +61,20 @@
 </template>
 
 <script setup lang="ts">
-import {useMyStorage} from '~/composables/useMyStorage'
+import { useMyStorage } from '~/composables/useMyStorage'
+
 defineOptions({ name: 'Login' })
+definePageMeta({
+  layout: 'auth'
+})
 const { title } = useAppConfig();
 const { setStorage } = useMyStorage();
 const route = useRoute();
 
 onMounted(() => {
-  console.log(route , route.query.message)
-  if(route.query.message){
-    alert(route.query.message)
+  console.log(route, route.query.message)
+  if (route.query.message) {
+    console.log(route.query.message)
   }
 })
 
@@ -81,7 +85,7 @@ const form = reactive({
   email: '877880098@qq.com',
   password: '123456',
   code: '',
-  uuid:''
+  uuid: ''
 })
 const isDisabled = computed(() => form.email && form.password && form.code && loginLoading.value)
 async function submitSignIn() {
@@ -89,21 +93,21 @@ async function submitSignIn() {
   const { data } = await useFetch('/api/auth/signIn', {
     method: 'POST',
     body: form,
-    watch:false
-  }).finally(()=>{
+    watch: false
+  }).finally(() => {
     loginLoading.value = false
   })
-  if(data.value.code === 0){
+  if (data.value.code === 0) {
     alert(data.value.message)
     setStorage('tokens', data.value.data)
     navigateTo(route.query?.redirect || '/')
-  }else{
+  } else {
     alert(data.value.message)
     loadCodeImg()
   }
 }
 async function loadCodeImg() {
-  $fetch('/api/captcha').then((result)=>{
+  $fetch('/api/captcha').then((result) => {
     form.uuid = result.data.uuid
     codeImg.value = result.data.captcha
   })

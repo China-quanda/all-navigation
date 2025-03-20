@@ -31,7 +31,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     console.log('没有token')
     if (whiteList.includes(to.path)) {
       console.log('没有token-在白名单路由')
-      return 
+      // return navigateTo(to.path)
     } else {
       console.log('没有token-2非白名单路由')
       clearError()

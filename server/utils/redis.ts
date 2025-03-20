@@ -1,2 +1,8 @@
 import Redis from 'ioredis'
-export const redis = new Redis()// 默认连接到 localhost:6379
+const { redisConfig } = useRuntimeConfig();
+
+export const redis = new Redis({
+  host: redisConfig.host,
+  port: redisConfig.port,
+  password: redisConfig.password,
+})// 默认连接到 localhost:6379

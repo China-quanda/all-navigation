@@ -62,6 +62,9 @@
 <script setup lang="ts">
 defineOptions({ name: 'Login' })
 const { title } = useAppConfig();
+definePageMeta({
+  layout: 'auth'
+})
 
 const loginLoading = ref(false)
 const showPassword = ref(true)

@@ -39,13 +39,119 @@ model Navigation {
   id          Int      @id @default(autoincrement())
   createTime  DateTime @default(now()) @map("create_time")
   updatedTime DateTime @updatedAt @map("updated_time")
-  title       String
-  url         String
-  icon        String?
-  desc        String?
   parentId    Int?     @map("parent_id")
   parent      Navigation? @relation("NavigationToChildren", fields: [parentId], references: [id])
   children    Navigation[] @relation("NavigationToChildren")
 
   @@map("tb_navigation")
+}
+
+// 书签集合模型
+// model Collection {
+//   id          Int       @id @default(autoincrement()) //集合唯一标识符
+//   createTime  DateTime @default(now()) @map("create_time")
+//   updatedTime DateTime @updatedAt @map("updated_time")
+//   name        String      @unique                // 添加唯一约束
+//   slug        String?     @unique                // 添加唯一约束
+//   description String?                              // 集合描述信息
+//   icon        String?                              // 集合图标URL
+//   isPublic    Boolean     @default(true)           // 是否公开可访问
+//   password    String?                              // 私密集合的访问密码
+//   sortOrder   Int         @default(0)              // 集合在列表中的排序位置
+//   viewStyle   String      @default("list")         // 展示样式：列表/卡片
+//   sortStyle   String      @default("alpha")        // 排序方式：字母/时间/手动
+//   viewCount   Int         @default(0)              // 集合被访问次数
+//   folders     Folder[]                            // 文件夹
+//   bookmarks   Bookmark[]                          // 书签
+// }
+
+
+// 文件夹模型
+model Folder {
+  id          Int       @id @default(autoincrement()) //集合唯一标识符
+  createTime  DateTime @default(now()) @map("create_time")
+  updatedTime DateTime @updatedAt @map("updated_time")
+  name        String                               // 文件夹名称
+  icon        String?                              // 文件夹图标URL
+  sortOrder   Int         @default(0)              // 排序位置
+  isPublic    Boolean     @default(true)           // 是否公开可访问
+  password    String?                              // 私密文件夹的访问密码
+  parentId    Int?         @map("parent_id")                     // 父文件夹ID，用于层级结构
+  parent      Folder?     @relation("FolderToFolder", fields: [parentId], references: [id])
+  children    Folder[]    @relation("FolderToFolder")
+  bookmarks   Bookmark[]  // 书签
+  // collectionId Int     // 所属集合
+  // collection  Collection  @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
+
+// 书签模型
+model Bookmark {
+  id          Int       @id @default(autoincrement()) //集合唯一标识符
+  createTime  DateTime @default(now()) @map("create_time")
+  updatedTime DateTime @updatedAt @map("updated_time")
+  title       String                               
+  url         String                               
+  description String?                              
+  icon        String?                              
+  sortOrder   Int         @default(0)              //排序
+  viewCount   Int         @default(0)              // 预览次数
+  folderId    Int?     
+  folder      Folder?     @relation(fields: [folderId], references: [id])
+  //  collectionId Int     // 所属集合
+  // collection  Collection  @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+}
+
+// 网站设置模型
+model SiteSetting {
+  id          Int       @id @default(autoincrement()) //集合唯一标识符
+  createTime  DateTime @default(now()) @map("create_time")
+  updatedTime DateTime @updatedAt @map("updated_time")
+  key         String    @unique                    // 设置项键名
+  value       String?    @db.Text                   // 设置项值，使用Text类型支持长文本
+  type        String    @default("string")         // 值类型：string, number, boolean, json
+  group       String    @default("basic")          // 设置分组：basic, seo, feature
+  description String?                              // 设置项描述
+  images      SettingImage[]                       // 多对多关系
+
+  @@index([key])  // 为 key 添加索引
+  @@index([group])  // 已有的索引
+}
+
+// 访问日志模型
+model AccessLog {
+  id          String    @id @default(cuid())        // 访问日志唯一标识符
+  ip          String                               // 访问者IP地址
+  userAgent   String                               // 访问者浏览器信息
+  path        String                               // 访问的页面路径
+  createdAt   DateTime  @default(now())            // 访问时间
+}
+
+// 中间关联模型，支持排序和额外信息
+model SettingImage {
+  id          Int       @id @default(autoincrement()) //集合唯一标识符
+  createTime  DateTime @default(now()) @map("create_time")
+  updatedTime DateTime @updatedAt @map("updated_time")
+  settingId     Int
+  setting       SiteSetting @relation(fields: [settingId], references: [id])
+  imageId       Int
+  image         Image       @relation(fields: [imageId], references: [id])
+  description   String?     // 图片在此设置中的额外描述
+  @@unique([settingId, imageId])
+}
+
+// 图片模型，直接在数据库中存储图片
+model Image {
+   id          Int       @id @default(autoincrement()) //集合唯一标识符
+  createTime  DateTime @default(now()) @map("create_time")
+  updatedTime DateTime @updatedAt @map("updated_time")
+  name        String                               // 图片原始文件名
+  data        Bytes                                // 图片二进制数据
+  mimeType    String                               // 图片MIME类型（如 image/jpeg, image/png）
+  type        String                               // 图片类型（如广告、头像、背景等）
+  description String?                              // 图片描述
+  size        Int                                  // 图片文件大小（字节）
+  width       Int?                                 // 图片宽度
+  height      Int?                                 // 图片高度
+  isPublic    Boolean     @default(true)           // 是否公开
+  settingImages SettingImage[]
 }

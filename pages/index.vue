@@ -1,13 +1,12 @@
 <template>
 
-  <div class="flex gap-x-4 h-full dark:bg-[#131313]">
+  <div class="flex gap-x-4 h-full p-4 dark:bg-[#131313]">
     <div>
       <DefaultSideBar/>
     </div>
     <div class=" grid gap-5 w-full justify-center "
       style="grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));">
-      <div class="flex border-solid border-[1px] border-[#e4e7ed] dark:border-[#414243] bg-white dark:bg-[#1d1e1f] p-[20px] rounded cursor-pointer
-    hover:shadow-inner relative overflow-hidden" v-for="i in 20">
+      <div class="flex border-solid border-[1px] border-[#e4e7ed] dark:border-[#414243] bg-white dark:bg-[#1d1e1f] p-[20px] rounded cursor-pointer hover:shadow-inner relative " v-for="i in 60">
         <div class="flex flex-col gap-3">
           <div class="flex gap-2 items-center">
             <div class="w-[35px] h-[35px]">
@@ -53,18 +52,7 @@
     </div>
   </div>
 
-
-
 </template>
 
 <script lang="ts" setup>
 </script>
-
-<style lang="scss" scoped>
-.siteKeyword {
-  &:not(:first-child) {
-    padding-left: 3px;
-    border-left: 1px solid #f3f4f6;
-  }
-}
-</style>
