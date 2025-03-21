@@ -3,9 +3,7 @@
     <button>新增文件夹</button>
     <button>新增网站</button>
   </div>
-
-
-  <el-input v-model="input" style="width: 240px" placeholder="Please input" />
+  <AdminIndexAddForm></AdminIndexAddForm>
 </template>
 
 <script setup lang="ts">

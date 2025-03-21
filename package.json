@@ -11,25 +11,20 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/ui": "3.0.0-beta.4",
     "@nuxtjs/tailwindcss": "^6.13.1",
-    "@primeuix/themes": "^1.0.0",
-    "@prisma/client": "6.4.1",
+    "@prisma/client": "^6.5.0",
     "bcrypt": "^5.1.1",
-    "dayjs": "^1.11.13",
+    "cheerio": "^1.0.0",
     "ioredis": "^5.5.0",
     "jsonwebtoken": "^9.0.2",
-    "nuxt": "^3.16.1",
-    "primevue": "^4.3.2",
+    "nuxt": "^3.15.4",
     "scss": "^0.2.4",
     "svg-captcha": "^1.4.0",
     "uuid": "^11.1.0",
     "vue": "latest"
   },
   "devDependencies": {
-    "@element-plus/nuxt": "^1.1.1",
     "@types/node": "^22.13.8",
-    "element-plus": "^2.9.6",
     "prisma": "^6.4.1",
     "sass": "^1.77.6",
     "ts-node": "^10.9.2",

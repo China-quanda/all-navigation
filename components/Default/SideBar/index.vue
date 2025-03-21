@@ -8,6 +8,7 @@
       <span v-if="!isCollapse" class="text-[20px] font-semibold leading-6 text-gray-900 dark:text-gray-100">{{ title }}</span>
     </div>
     <DefaultSideBarMenu :sideMenu="sideMenu"  />
+    <FileUpload></FileUpload>
   </div>
 </template>
 
@@ -129,6 +130,18 @@ const sideMenu = ref([
     ]
   }
 ])
+
+
+const { data } = await useFetch('/api/folder', {
+    method: 'POST',
+    body: {
+      // id:20,
+      parentId: 19,
+      name: 'form-item-label-req组件'
+    },
+    watch: false
+  })
+  console.log('data',data.value)
 </script>
 
 <style lang="scss" scoped>
