@@ -14,7 +14,14 @@ export default defineNuxtConfig({
       apiBase: '/api'
     },
     mode:process.env.NODE_ENV,
-    redisConfig:{
+    securityConfig: { // jwt Config
+      secret: process.env.SECURITY_SECRET,
+      refreshSecret: process.env.SECURITY_REFRESH_SECRET,
+      expiresIn: process.env.SECURITY_EXPIRES_IN,
+      refreshIn: process.env.SECURITY_REFRESH_IN,
+      bcryptSaltOrRound: Number(process.env.SECURITY_BCRYPT_SALT_OR_ROUND),
+    },
+    redisConfig:{ // redis Config
       host: process.env.REDIS_HOST || 'localhost',
       port: process.env.REDIS_PORT ? Number(process.env.REDIS_PORT) : 6379,
       password: process.env.REDIS_PASSWORD,

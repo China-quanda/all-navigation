@@ -3,13 +3,6 @@
 export default defineAppConfig({
   title: 'Nuxt Navigation',
   defaultAvatar:'https://picsum.photos/200/200',
-  security: {
-    secret: 'topSecret51',
-    refreshSecret: 'refreshSecret',
-    expiresIn: '7d',
-    refreshIn: '7d',
-    bcryptSaltOrRound: 10,
-  },
   theme: {
     dark: true,
     colors: {

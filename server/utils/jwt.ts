@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken'
-const { security:securityConfig } = useAppConfig()
+import jwt from 'jsonwebtoken';
+const { securityConfig  } = useRuntimeConfig();
 
 export const verifyAccessToken = async (token: string) => {
   return jwt.verify(token, {
