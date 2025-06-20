@@ -88,6 +88,7 @@ export const bookmarksToJson = (html: string) => {
         id: uuid(),
         parentId: parentId,
         type: "link",
+        sort: 0,
         title: $a.text(),
         url: $a.attr('href'),
         icon: getIcon($a.attr('href'), $a.attr('icon')),
@@ -117,6 +118,10 @@ export const bookmarksToJson = (html: string) => {
     obj = {
       id: objId,
       parentId: parentId || null,
+      icon:null,
+      sort: 0,
+      isPublic: true,
+      password: null,
       type: "folder",
       title: $h3.text(),
       createTime: $h3.attr('add_date') || "",
